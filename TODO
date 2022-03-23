@@ -1,0 +1,48 @@
+
+JORDAN
+-fonction init :
+    clear favoris
+    relance les favoris et recupere le LocalStorage
+
+LUCAS
+- fonction recherche :
+    fonction comparaison chaine charactere avec liste personnages
+    fonction ajax qui récupère les données (nom) + traduction de l'object JSON vers un objet JS
+    fonction qui affiche le contenue de l'objet récupéré 
+        => async function : traduction des images en vrais lien
+
+JORDAN
+- fonction ajouterFavoris :
+    enregistre le nom du champion affiché
+    ajout listener pour relancer la recherche
+    ajouter localStrorage
+
+JORDAN
+- fonction supprimerFavoris :
+    supprimer le favoris
+    enlever du tableau localStrorage
+
+MARCO
+- template d'affichage d'information d'un personnage en html css (avec possibilité d'en avoir plusieurs) = voir wrap ou bloc ou mode carte
+    VOIR exemple : http://ddragon.leagueoflegends.com/cdn/12.5.1/data/en_US/champion/Aatrox.json 
+    nom 
+    id
+    titre
+    image
+    icone
+    slideShow (nomSkin,image)
+    lore
+    tags
+    info (attack,defense...)
+    stats IMPORTANT
+    spell :
+        nom
+        image (logo)
+        description
+    passif :
+        nom
+        image
+        description
+
+MARCO
+- style global de la page
