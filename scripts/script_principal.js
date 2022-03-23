@@ -84,13 +84,16 @@ function ajouterFavoris(){
 
     if(ajout){
         var verif = confirm("Etes vous sûr de vouloir ajouter \""+texte+"\" au favori ?");
-        let objetConcatener = {};
-        objetConcatener[compteurFavoris] = texte;
-        let nouvelleObj = Object.assign(fav,objetConcatener);
-        // Sauvegarde dans le localStorage
-        localStorage.setItem("favoris",JSON.stringify(nouvelleObj));
-        compteurFavoris++;
-        affichageFavoris();
+        if(verif){
+            let objetConcatener = {};
+            objetConcatener[compteurFavoris] = texte;
+            let nouvelleObj = Object.assign(fav,objetConcatener);
+            // Sauvegarde dans le localStorage
+            localStorage.setItem("favoris",JSON.stringify(nouvelleObj));
+            compteurFavoris++;
+            affichageFavoris();
+        }
+        
     }
 }
 
