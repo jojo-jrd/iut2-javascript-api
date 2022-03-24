@@ -6,7 +6,7 @@
 		<link rel="shortcut icon" type="image/x-icon" href="favicon-js.ico">
 		<link rel="stylesheet" href="styles.css">
 	</head>
-	<body>
+	<body onload="init()">
 		<header>
 			<h1>Recherche d'offres d'emploi</h1>
 
@@ -20,7 +20,7 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input type="text" placeholder="Que cherchez-vous ?" />
+					<input id="champ_texte" type="text" placeholder="Que cherchez-vous ?" onkeyup="verificationVide()"/>
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -29,8 +29,8 @@
 						<img src="images/loupe.svg" alt="Loupe pour recherche" width=22 >
 					</button>
 
-					<button id="btn-favoris" type="button" disabled
-					title="Ajouter la recherche aux favoris">
+					<button id="btn-favoris" type="button" onclick="ajouterFavoris()"
+					title="Ajouter la recherche aux favoris" disabled>
 						<!-- Icone étoile vide => Recherche pas en favoris -->
 						<img src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
 
@@ -74,7 +74,7 @@
 						<img src="images/croix.svg" alt="Icone pour supprimer le favori" width=15 title="Cliquer pour supprimer le favori">
 					</li>
 				</ul>
-				<p class="info-vide">( &empty; Aucune recherche enregistrée )</p>
+				<!--<p class="info-vide">( &empty; Aucune recherche enregistrée )</p>-->
 			</section>
 
 		</main>
