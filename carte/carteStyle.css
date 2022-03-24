@@ -1,0 +1,109 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+.carte_principale{
+    width: 800px;
+    background-image: url("Aatrox_0.jpg");
+    border-radius: 50px;
+    text-align: center;
+    margin: auto;
+}
+.carte_principale>section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-size: 5em;
+    margin: 0;
+}
+h4{
+    margin: 0;
+}
+.titre{
+    margin-bottom: 5%;
+}
+.infos{
+    color: #C29860;
+    display: flex;
+    justify-content: space-around;
+}
+.role p{
+    margin: 0;
+}
+.stats p{
+    margin: 0;
+}
+.difficult p{
+    margin: 0;
+}
+
+section section p:nth-child(1){
+    color: white;
+    margin-bottom: 2%;
+}
+.skin_spells{
+    display: flex;
+    justify-content: space-around;
+}
+
+.skins img, .spells img{
+    width: 90px;
+    height: 90px;
+    border: solid white 2px;
+    border-radius: 20px;
+}
+.asset{
+    display: flex;
+    justify-content: space-evenly;
+}
+.skins div, .spells div div{
+    display: flex;
+}
+.spells div p{
+    margin-top: 0;
+}
+.spells div div h3, .skins div h3{
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+}
+.spells>div{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.spells{
+    justify-content: center;
+}
+.passif{
+    align-items: center;
+    width: 35%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    
+}
+.all{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+}
+.passif h2{
+    margin: 0;
+}
+.passif img{
+    width: 90px;
+    height: 90px;
+    border: solid white 2px;
+    border-radius: 20px;
+}
+.passif div div{
+    display: flex;
+}
+.passif div div h3{
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+}
