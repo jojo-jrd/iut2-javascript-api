@@ -104,7 +104,7 @@ function affichageFavoris(){ // TODO FAIRE LES LIENS CLIQUABLES BESOIN LUCAS
  * Sinon il demande confirmation pour l'ajouter
  */
 function ajouterFavoris(){
-    var texte = $("#champ_texte").val(); // Recuperation du texte avec Jquery
+    var texte = $("#champ_texte").val().trim(); // Recuperation du texte avec Jquery en enlevant les espaces sur les cotés
     var favoris = localStorage.getItem("favoris");
     var ajout = false;
 
@@ -113,9 +113,8 @@ function ajouterFavoris(){
         var fav = JSON.parse(favoris); // Convertit l'objet JSON en objet JS
         var favAsupprimer;
         for(var f in fav){
-            console.log(typeof f); // TEST
-            console.log(f);
-            if(fav[f].toUpperCase()==texte.toUpperCase()){ // Si favori déjà existant
+
+            if(fav[f].toUpperCase().trim()==texte.toUpperCase()){ // Si favori déjà existant
                 impossible = true;
                 favAsupprimer = f; // Récupération du favoris à supprimer
             }
