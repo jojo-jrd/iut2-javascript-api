@@ -160,7 +160,7 @@ function getSplashFromObj(data){
     Object.keys(skinList).forEach((key)=>{
         let skin = skinList[key];
         let name = skin.name;
-        let link = API_IMAGE_SPLASH + obj.id + "_" + key +".jpg"; // api/NomChamp_X.jpg
+        let link = API_IMAGE_SPLASH + obj.id + "_" + skin.num +".jpg"; // api/NomChamp_X.jpg
         NameAndSplash.push({'name': name, 'link': link});
     });
     debug("Retourne le tableau de splash :", [NameAndSplash]);
@@ -183,7 +183,7 @@ function getLoadingFromObj(data){
     Object.keys(skinList).forEach((key)=>{
         let skin = skinList[key];
         let name = skin.name;
-        let link = API_IMAGE_LOADING + obj.id + "_" + key +".jpg"; // api/NomChamp_X.jpg
+        let link = API_IMAGE_LOADING + obj.id + "_" + skin.num +".jpg"; // api/NomChamp_X.jpg
         NameAndLoading.push({'name': name, 'link': link});
     });
     debug("Retourne le tableau de Loading :", [NameAndLoading]);
