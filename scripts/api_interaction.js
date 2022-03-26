@@ -103,47 +103,20 @@ function getChampionsList(data){
  * @param {String} nom  nom du champion recherché.
  * @param {SPECIAL REQUEST PARAM} => liste et détails dans CONSTANTES -> special request param
  */
- function requestChampionInfo(name, param){
-    debug("Entré dans la requestChampionInfo. param =", [name, param]);
+ function requestChampionInfoByName(name){
+    debug("Entré dans la requestChampionInfo. param =", [name]);
     var address = API_NAME_CHAMPION + name + ".json";
     $.get(address,
         (data) => {
-            switch (param) {
-                default :
-                    debug("Calback getCampionInfo.");
-                    getChampionInfoByName(data);
-                    break;
-            }
+            var ChampionInfo = Object.values(data.data)[0]; // objet json du champion
+            debug("Retourne : ", [ChampionInfo]);
+            return ChampionInfo;     
         },
         "json");
-}
-
-/**
- * Retourne un objet json contenant toutes les informations sur
- * le champion.
- * 
- * @returns {Array<JSON_OBJ>}
- */
- function getChampionInfoByName(data){
-    debug("Entré dans la fonction getChampionInfoByName. data =", [data]);
-    var ChampionInfo = Object.values(data.data)[0]; // objet json du champion
-    debug("Retourne : ", [ChampionInfo]);
-    return ChampionInfo;
 }
 
 
 // ================ IMAGE FROM CHAMP INFO ===============
-
-function loadOBJTMP() {
-    var address = API_NAME_CHAMPION + "Aatrox.json";
-    $.get(address,
-        (data) => {
-            getLoadingFromObj(data);
-            getSplashFromObj(data);
-            
-        },
-        "json");
-  }
 
 /**
  * Retourne les liens des images splash à partir 
@@ -152,8 +125,7 @@ function loadOBJTMP() {
  * @param {JSON_OBJ} obj 
  * @returns {Array<{'name':String, 'link':String}>}
  */
-function getSplashFromObj(data){
-    var obj = Object.values(data.data)[0];
+function getSplashFromObj(obj){
     debug("Entré dans la fonction getSplashFromObj. obj =", [obj]);
     var NameAndSplash = [];
     var skinList = obj.skins;
@@ -175,8 +147,7 @@ function getSplashFromObj(data){
  * @param {JSON_OBJ} obj 
  * @returns {Array<{'name':String, 'link':String}>}
  */
-function getLoadingFromObj(data){
-    var obj = Object.values(data.data)[0];
+function getLoadingFromObj(obj){
     debug("Entré dans la fonction getLoadingFromObj. obj =", [obj]);
     var NameAndLoading = [];
     var skinList = obj.skins;
@@ -197,21 +168,119 @@ function getLoadingFromObj(data){
  * @param {JSON_OBJ} obj  
  * @returns {Array<{name : String, link : String}>} 
  */
-function getSpellAndImageFromObj(data){
-    var obj = Object.values(data.data)[0];
-    debug("Entré dans la fonction getSpellAndImageFromObj. obj=", [obj]);
-    var NameAndImageList = [];
+function getSpellInfoFromObj(obj){
+    debug("Entré dans la fonction getSpellInfoFromObj. obj=", [obj]);
+    var SpellInfoList = [];
     var spellList = obj.spells;
     Object.keys(spellList).forEach(function(key){
         let spell = spellList[key];
-        let name = spel.name;
+        let name = spell.name;
         let link = API_IMAGE_SPELL + spell.image.full;
-        NameAndImageList.push({"name": name, "link": link});
+        let description = spell.description
+        SpellInfoList.push({"name": name, "link": link, "description": description});
       }); 
       
-    debug("Retourne le tableau :", NameAndImageList);
-    return NameAndImageList;
+    debug("Retourne le tableau :", [SpellInfoList]);
+    return SpellInfoList;
 }
 
- 
-// 4 - passiv
+/**
+ * Cette fonciton retourne un objet json comprenant le nom, le lien 
+ * vers l'image et la description du passive de l'obj champions fourni.
+ * @param {JSON_OBJ} obj 
+ * @returns {JSON_OBJ}
+ */
+function getPassivInfoFromObj(obj){
+    debug("Entré dans la fonction getSpellAndImageFromObj. obj=", [obj]);
+
+    var passive = obj.passive;
+    var name = passive.name;
+    var link = API_IMAGE_PASSIV + passive.image.full;
+    var description = passive.description;
+    PassivInfo = {"name": name, "link": link, "description": description};
+      
+    debug("Retourne l'objet :", [PassivInfo]);
+    return PassivInfo;
+}
+
+// ============ SHORTCUT =======================
+
+/**
+ * Cette fonciton renvoi un objet json contentant toutes
+ * les informations pour remplire un template "resultat"
+ * @param {JSON_OBJ} obj : l'objet du champ en question
+ * @returns {JSON_OBJ} : objet formaté pour un usage plus facile !
+ */
+function getTemplateResultatInfo(obj){
+    debug("Entrée dans la foncion getTemplateResultatInfo. obj =", [obj]);
+    var tableInfo = {};
+    //role
+    tableInfo.roles = obj.tags;
+
+    // nom et dificulté
+    tableInfo.nom = obj.id;
+    tableInfo.difficulty = obj.info.difficulty;
+    
+    // stat
+    tableInfo.stats = {'HP': obj.stats.hp, 'DMG': obj.stats.attackdamage};
+    
+    //lore
+    tableInfo.lore = obj.lore;
+
+    // Splash asset :
+    tableInfo.splashs = getSplashFromObj(obj);
+
+    debug("Retoure l'objet json :", [tableInfo]);
+    return tableInfo;
+}
+
+/**
+ * Cette fonciton renvoi un objet json contentant toutes
+ * les informations pour remplire un template "Carte"
+ * @param {JSON_OBJ} obj : l'objet du champ en question
+ * @returns {JSON_OBJ} : objet formaté pour un usage plus facile !
+ */
+function getTemplateCarteInfo(obj){
+    var tableInfo = {};
+    // name & title
+    tableInfo.name = obj.id;
+    tableInfo.title = obj.title;
+
+    //roles
+    tableInfo.roles = obj.tags;
+
+    //stats 
+    var tmp = obj.stats;
+    tableInfo.stats = {
+        'HP': tmp.hp,
+        'MOVESPEED': tmp.movespeed,
+        'ARMOR': tmp.armor,
+        'RANGE': tmp.attackrange,
+        'DMG': tmp.attackdamage
+    };
+    
+    //difficulty
+    var tmp = obj.info
+    tableInfo.difficulty = {
+        'ATK': 8,
+        'DEF': 4,
+        'MAG': 3,
+        'DIFFICULTY': 4
+    };
+
+    // splash/loading
+    tableInfo.splashs = getSplashFromObj(obj);
+    tableInfo.loadings = getLoadingFromObj(obj);
+
+    // spells:
+    tableInfo.spells = getSpellInfoFromObj(obj);
+
+    // passive
+    tableInfo.passive = getPassivInfoFromObj(obj);
+
+    //lore
+    tableInfo.lore = obj.lore;
+
+    debug("Retourne l'obj json :", [tableInfo]);
+    return tableInfo;
+}
