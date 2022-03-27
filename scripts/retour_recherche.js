@@ -11,7 +11,7 @@ function afficheResultat(nameChamp){
     var divStatResultat = $(".stat_resultat")
     var divLoreResultat = $(".lore_resultat")
 
-    ChampiontableauInfo.roles.forEach(tag =>  {
+    ChampiontableauInfo.roles.forEach((tag) =>  {
         divRoleResultat.append($("<p>" + tag + "</p>"));
     });
     divNameResultat.prepend($("<h1>" + champion.name + "</h1>"));
