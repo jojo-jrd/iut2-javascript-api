@@ -1,4 +1,4 @@
-function afficheReusltat(nameChamp){
+function afficheResultat(nameChamp){
 
     var champion = requestChampionInfoByName(nameChamp);
     // puis (1) ou (2)
