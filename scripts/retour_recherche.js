@@ -1,11 +1,7 @@
 function afficheResultat(nameChamp){
 
     var champion = requestChampionInfoByName(nameChamp);
-    // puis (1) ou (2)
-    //(1)
-    var ChampiontableauInfo = getTemplateResultatInfo(champion);
-    //ou
-    //(2)
+    
     var divRoleResultat = $(".role_resultat")
     var divNameResultat = $(".name_resultat")
     var divStatResultat = $(".stat_resultat")
