@@ -24,7 +24,7 @@ function init(){
         var fav = JSON.parse(favoris); // Convertit l'objet JSON en objet JS
         var i = 0;
         for(var f in fav){ // Parcourt des clés des favoris
-            i = parseInt(f);
+            i = parseInt(f); // Convertit en entier la clé
         }
         compteurFavoris = i + 1; // Ajoute 1 à l'indice du dernier élément pour pouvoir rajouter dans le localStrorage
     }
@@ -41,7 +41,7 @@ function init(){
  * elle désactive et change l'affichage du bouton favori à chaque bouton relaché
  */
 function verificationEntree(){
-    var texte = $("#champ_texte").val(); // Recuperation du texte avec Jquery
+    var texte = $("#champ_texte").val().trim(); // Recuperation du texte avec Jquery
 
     $("#btn-favoris").empty(); // Supprime le contenue du bouton favori
 
@@ -56,13 +56,24 @@ function verificationEntree(){
         $("#btn-favoris").prop('disabled', false); // Active le bouton
         $("#btn-favoris").css("background-color","var(--main-green)"); // Mets le fond en vert
 
-        if(true){ // TODO faire verif si déjà dans la liste
+        var dejaExistant = false;
+        var favoris = localStorage.getItem("favoris");
+        if(favoris!=null && Object.keys(JSON.parse(favoris)).length!=0){ // S'il y a bien des favoris
+            favoris = JSON.parse(favoris); // Convertit l'objet JSON en objet JS
+            for(var f in favoris){
+                if(texte.toUpperCase()==favoris[f].toUpperCase().trim()){ // Si le texte est déjà dans les favoris
+                    dejaExistant = true;
+                }
+            }
+        }
 
-            $("#btn-favoris").append("<img src=\"images/etoile-pleine.svg\" alt=\"Etoile pleine\" width=22 >");  // Affiche une étoile vide
+        if(dejaExistant){ // S'il est déjà dans les favoris
+
+            $("#btn-favoris").append("<img src=\"images/etoile-pleine.svg\" alt=\"Etoile pleine\" width=22 >");  // Affiche une étoile pleine
 
         }else{
         
-            $("#btn-favoris").append("<img src=\"images/etoile-vide.svg\" alt=\"Etoile vide\" width=22 >"); // Affiche une étoile pleine
+            $("#btn-favoris").append("<img src=\"images/etoile-vide.svg\" alt=\"Etoile vide\" width=22 >"); // Affiche une étoile vide
         }
 
     }
@@ -148,6 +159,7 @@ function ajouterFavoris(){
             localStorage.setItem("favoris",JSON.stringify(nouvelleObj)); // Convertit l'objet JS en objet JSON et ajout au localStrorage
             compteurFavoris++; // Ajoute 1 à l'id du prochain favoris
             affichageFavoris(); // Mise à jour de l'affichage pour le favori ajouté
+            verificationEntree(); // Mise à jour de l'icone du bouton favoris
         }
         
     }
@@ -172,4 +184,5 @@ function supprimerFavoris(id){
         localStorage.setItem("favoris",JSON.stringify(fav)) // Convertit l'objet JS en objet JSON et ajout au localStrorage
     }
     affichageFavoris(); // Mise à jour de l'affichage si plus de favori
+    verificationEntree(); // Mise à jour de l'icone du bouton favoris
 }
