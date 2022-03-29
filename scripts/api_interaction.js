@@ -1,10 +1,3 @@
-/*
-- fonction recherche :
-    fonction comparaison chaine charactere avec liste personnages
-    fonction ajax qui récupère les données (nom) + traduction de l'object JSON vers un objet JS
-    fonction qui affiche le contenue de l'objet récupéré 
-        => async function : traduction des images en vrais lien
-*/
 // =============================  CONSTANTES =================================
 // AIDE DEVELOPPEUR :
 var DEBUG = true;           // => passer à false avant la mise en développement 
@@ -47,21 +40,26 @@ var NAME_ONLY = 0           // => récupère seuleument le/les noms
  */
 function requestChampionsList(param){
     debug("Entré dans la requestChampionsList. param =", [param]);
-    $.get(API_ALL_CHAMPIONS,
-        (data) => {
-            switch (param) {
-                case NAME_ONLY:
-                    debug("Calback getNamList.");
-                    getNameList(data);
-                    break;
-            
-                default :
-                    debug("Calback getCampionsList.");
-                    getChampionsList(data);
-                    break;
-            }
-        },
-        "json");
+
+    return new Promise((resolve, reject) => {
+        //effectue une requette api puis en fonciton de param retourne un résultat
+        $.get(API_ALL_CHAMPIONS,
+            (data) => {
+                switch (param){
+                    case NAME_ONLY:
+                        debug("Calback getNamList.");
+                        // résolution de la promesse
+                        resolve(getNameList(data));
+                        break;
+                    default :
+                        debug("Calback getCampionsList.");
+                        // resolution de la promesse
+                        resolve(getChampionsList(data));
+                        break;
+                }
+            },
+            "json");
+    }); 
 }
 
 /**
@@ -106,13 +104,16 @@ function getChampionsList(data){
  function requestChampionInfoByName(name){
     debug("Entré dans la requestChampionInfo. param =", [name]);
     var address = API_NAME_CHAMPION + name + ".json";
-    $.get(address,
-        (data) => {
-            var ChampionInfo = Object.values(data.data)[0]; // objet json du champion
-            debug("Retourne : ", [ChampionInfo]);
-            return ChampionInfo;     
-        },
-        "json");
+    return new Promise((resolve, reject) =>{
+        $.get(address,
+            (data) => {
+                var ChampionInfo = Object.values(data.data)[0]; // objet json du champion
+                debug("Retourne : ", [ChampionInfo]);
+                // résolution de la promesse 
+                resolve(ChampionInfo);     
+            },
+            "json");
+    });  
 }
 
 
@@ -211,27 +212,29 @@ function getPassivInfoFromObj(obj){
  * @param {JSON_OBJ} obj : l'objet du champ en question
  * @returns {JSON_OBJ} : objet formaté pour un usage plus facile !
  */
-function getTemplateResultatInfo(obj){
-    debug("Entrée dans la foncion getTemplateResultatInfo. obj =", [obj]);
-    var tableInfo = {};
-    //role
-    tableInfo.roles = obj.tags;
+function getTemplateResultatInfo(name){
+    requestChampionInfoByName(name).then((obj) => {
+        debug("Entrée dans la foncion getTemplateResultatInfo. obj =", [obj]);
+        var tableInfo = {};
+        //role
+        tableInfo.roles = obj.tags;
 
-    // nom et dificulté
-    tableInfo.nom = obj.id;
-    tableInfo.difficulty = obj.info.difficulty;
-    
-    // stat
-    tableInfo.stats = {'HP': obj.stats.hp, 'DMG': obj.stats.attackdamage};
-    
-    //lore
-    tableInfo.lore = obj.lore;
+        // nom et dificulté
+        tableInfo.nom = obj.id;
+        tableInfo.difficulty = obj.info.difficulty;
 
-    // Splash asset :
-    tableInfo.splashs = getSplashFromObj(obj);
+        // stat
+        tableInfo.stats = {'HP': obj.stats.hp, 'DMG': obj.stats.attackdamage};
 
-    debug("Retoure l'objet json :", [tableInfo]);
-    return tableInfo;
+        //lore
+        tableInfo.lore = obj.lore;
+
+        // Splash asset :
+        tableInfo.splashs = getSplashFromObj(obj);
+
+        debug("Retoure l'objet json :", [tableInfo]);
+        return tableInfo;
+    });
 }
 
 /**
@@ -240,47 +243,49 @@ function getTemplateResultatInfo(obj){
  * @param {JSON_OBJ} obj : l'objet du champ en question
  * @returns {JSON_OBJ} : objet formaté pour un usage plus facile !
  */
-function getTemplateCarteInfo(obj){
-    var tableInfo = {};
-    // name & title
-    tableInfo.name = obj.id;
-    tableInfo.title = obj.title;
+function getTemplateCarteInfo(name){
+    requestChampionInfoByName(name).then((obj) => {
+        var tableInfo = {};
+        // name & title
+        tableInfo.name = obj.id;
+        tableInfo.title = obj.title;
 
-    //roles
-    tableInfo.roles = obj.tags;
+        //roles
+        tableInfo.roles = obj.tags;
 
-    //stats 
-    var tmp = obj.stats;
-    tableInfo.stats = {
-        'HP': tmp.hp,
-        'MOVESPEED': tmp.movespeed,
-        'ARMOR': tmp.armor,
-        'RANGE': tmp.attackrange,
-        'DMG': tmp.attackdamage
-    };
-    
-    //difficulty
-    var tmp = obj.info
-    tableInfo.difficulty = {
-        'ATK': 8,
-        'DEF': 4,
-        'MAG': 3,
-        'DIFFICULTY': 4
-    };
+        //stats 
+        var tmp = obj.stats;
+        tableInfo.stats = {
+            'HP': tmp.hp,
+            'MOVESPEED': tmp.movespeed,
+            'ARMOR': tmp.armor,
+            'RANGE': tmp.attackrange,
+            'DMG': tmp.attackdamage
+        };
+        
+        //difficulty
+        var tmp = obj.info
+        tableInfo.difficulty = {
+            'ATK': 8,
+            'DEF': 4,
+            'MAG': 3,
+            'DIFFICULTY': 4
+        };
 
-    // splash/loading
-    tableInfo.splashs = getSplashFromObj(obj);
-    tableInfo.loadings = getLoadingFromObj(obj);
+        // splash/loading
+        tableInfo.splashs = getSplashFromObj(obj);
+        tableInfo.loadings = getLoadingFromObj(obj);
 
-    // spells:
-    tableInfo.spells = getSpellInfoFromObj(obj);
+        // spells:
+        tableInfo.spells = getSpellInfoFromObj(obj);
 
-    // passive
-    tableInfo.passive = getPassivInfoFromObj(obj);
+        // passive
+        tableInfo.passive = getPassivInfoFromObj(obj);
 
-    //lore
-    tableInfo.lore = obj.lore;
+        //lore
+        tableInfo.lore = obj.lore;
 
-    debug("Retourne l'obj json :", [tableInfo]);
-    return tableInfo;
+        debug("Retourne l'obj json :", [tableInfo]);
+        return tableInfo;
+    })
 }
