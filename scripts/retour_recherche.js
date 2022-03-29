@@ -7,6 +7,8 @@ function afficheResultat(nameChamp){
     var divStatResultat = $(".stat_resultat");
     var divLoreResultat = $(".lore_resultat");
 
+    debug("Valeur de champion et de splashs avant affichage :", [champion, champion.splashs]);
+
     $(".main_sec").css("background-image", "url(" + (champion.splashs[0]).link + ")");
 
     champion.roles.forEach((tag) =>  {
@@ -24,7 +26,7 @@ function afficheResultat(nameChamp){
 
 
 function afficheCarte(nameChamp){
-    
+
     var champion = getTemplateCarteInfo(nameChamp);
 
     var divTitreCarte      = $(".titre"           );
@@ -35,7 +37,8 @@ function afficheCarte(nameChamp){
     var divSpellsCarte     = $(".spells"          );
     var secPassifCarte     = $(".passif"          );
     var divLoreCarte       = $(".lore"            );
-    
+
+    debug("Valeur de champion et de splashs avant affichage :", [champion, champion.splashs]);
 
     //SECTION carte_principale
     $(".main_sec").css("background-image", "url(" + (champion.loadings[0]).link + ")");
