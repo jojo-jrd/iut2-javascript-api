@@ -14,7 +14,7 @@ body{
 }
 .carte_principale{
     width: 800px;
-    background-image: url("Aatrox_0.jpg");
+    /* background-image: url("Aatrox_0.jpg"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 70%;
@@ -51,7 +51,7 @@ h4{
     display: flex;
     justify-content: space-around;
 }
-.role p{
+.roles p{
     margin: 0;
 }
 .stats p{
