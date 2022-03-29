@@ -1,6 +1,6 @@
 function afficheResultat(nameChamp){
 
-    var champion = getTemplateCarteInfo(nameChamp);
+    var champion = getTemplateResultatInfo(nameChamp);
 
     var secMainCarte = $(".main_sec");
     
@@ -9,7 +9,7 @@ function afficheResultat(nameChamp){
     var divStatResultat = $(".stat_resultat");
     var divLoreResultat = $(".lore_resultat");
 
-    secMainCarte.css("background-image", "url(" + champion.loadings[0].link + ")");
+    secMainCarte.css("background-image", "url(" + champion.splashs[0].link + ")");
 
     champion.roles.forEach((tag) =>  {
         divRoleResultat.append($("<p>" + tag + "</p>"));
