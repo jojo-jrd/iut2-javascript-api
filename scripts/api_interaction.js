@@ -213,7 +213,7 @@ function getPassivInfoFromObj(obj){
  * @returns {JSON_OBJ} : objet formaté pour un usage plus facile !
  */
 function getTemplateResultatInfo(name){
-    requestChampionInfoByName(name).then((obj) => {
+    return requestChampionInfoByName(name).then((obj) => {
         debug("Entrée dans la foncion getTemplateResultatInfo. obj =", [obj]);
         var tableInfo = {};
         //role
@@ -244,7 +244,7 @@ function getTemplateResultatInfo(name){
  * @returns {JSON_OBJ} : objet formaté pour un usage plus facile !
  */
 function getTemplateCarteInfo(name){
-    requestChampionInfoByName(name).then((obj) => {
+    return requestChampionInfoByName(name).then((obj) => {
         var tableInfo = {};
         // name & title
         tableInfo.name = obj.id;
