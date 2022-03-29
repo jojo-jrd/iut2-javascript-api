@@ -9,7 +9,7 @@ function afficheResultat(nameChamp){
     var divStatResultat = $(".stat_resultat");
     var divLoreResultat = $(".lore_resultat");
 
-    secMainCarte.style.backgroundimage = "" + champion.loadings[0].link + "";
+    secMainCarte.style.backgroundimage = "\"" + champion.loadings[0].link + "\"";
 
     champion.roles.forEach((tag) =>  {
         divRoleResultat.append($("<p>" + tag + "</p>"));
