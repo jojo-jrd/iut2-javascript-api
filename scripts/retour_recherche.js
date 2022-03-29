@@ -9,7 +9,7 @@ function afficheResultat(nameChamp){
     var divStatResultat = $(".stat_resultat");
     var divLoreResultat = $(".lore_resultat");
 
-    secMainCarte.style.backgroundImage = champion.loadings[0].link;
+    secMainCarte.css("background-image", "url(" + champion.loadings[0].link + ")");
 
     champion.roles.forEach((tag) =>  {
         divRoleResultat.append($("<p>" + tag + "</p>"));
@@ -38,8 +38,9 @@ function afficheCarte(nameChamp){
     var divLoreCarte       = $(".lore"            );
     
 
-//SECTION carte_principale
-secPrincipaleCarte.style.backgroundimage = champion.loadings[0].link;
+    //SECTION carte_principale
+    secPrincipaleCarte.css("background-image", "url(" + champion.loadings[0].link + ")");
+
     //DIV titre
     divTitreCarte.append($("<h1>" + champion.name + "</h1>"))
     divTitreCarte.append($("<h4>" + champion.title + "</h4>"))
