@@ -6,19 +6,24 @@ function afficheResultat(nameChamp){
         var divNameResultat = $(".name_resultat");
         var divStatResultat = $(".stat_resultat");
         var divLoreResultat = $(".lore_resultat");
-    
+        
+        //SECTION main_sec
         $(".main_sec").css("background-image", "url(" + (champion.splashs[0]).link + ")");
-    
+        
+        //DIV role_resultat
         champion.roles.forEach((tag) =>  {
             divRoleResultat.append($("<p>" + tag + "</p>"));
         });
-        divNameResultat.prepend($("<h1>" + champion.name + "</h1>"));
-    
-        divNameResultat.append($("<p>" + champion.difficulty + "</p>"));
-    
-        divStatResultat.append($("<p>" + champion.stats.HP + " HP</p>"));
+
+        //DIV name_resultat
+        divNameResultat.prepend($("<h1>" + champion.name       + "</h1>"));
+        divNameResultat.append ($("<p>"  + champion.difficulty + "</p>" ));
+
+        //DIV stat_resultat
+        divStatResultat.append($("<p>" + champion.stats.HP  + " HP</p>" ));
         divStatResultat.append($("<p>" + champion.stats.DMG + " Dmg</p>"));
-    
+
+        //DIV lore_resultat
         divLoreResultat.append($("<p>" + champion.lore + "</p>"));
     });
 }
@@ -40,7 +45,7 @@ function afficheCarte(nameChamp){
         $(".main_sec").css("background-image", "url(" + (champion.loadings[0]).link + ")");
 
         //DIV titre
-        divTitreCarte.append($("<h1>" + champion.name + "</h1>"));
+        divTitreCarte.append($("<h1>" + champion.name  + "</h1>"));
         divTitreCarte.append($("<h4>" + champion.title + "</h4>"));
 
         //DIV roles
@@ -49,17 +54,17 @@ function afficheCarte(nameChamp){
         });
 
         //DIV stats
-        divStatCarte.append($("<p>HP : " + champion.HP + "</p>"));
+        divStatCarte.append($("<p>HP : "                     + champion.HP        + "</p>"));
         divStatCarte.append($("<p>Vitesse de déplacement : " + champion.MOVESPEED + "</p>"));
-        divStatCarte.append($("<p>Armure : " + champion.ARMOR + "</p>"));
-        divStatCarte.append($("<p>Rayon d'attaque : " + champion.RANGE + "</p>"));
-        divStatCarte.append($("<p>Dégats d'attaque : " + champion.DMG + "</p>"));
+        divStatCarte.append($("<p>Armure : "                 + champion.ARMOR     + "</p>"));
+        divStatCarte.append($("<p>Rayon d'attaque : "        + champion.RANGE     + "</p>"));
+        divStatCarte.append($("<p>Dégats d'attaque : "       + champion.DMG       + "</p>"));
 
         //DIV difficult
         divDiffCarte.append($("<p>Difficulté : " + champion.DIFFICULTY + "</p>"));
-        divDiffCarte.append($("<p>Attaque : " + champion.ATK + "</p>"));
-        divDiffCarte.append($("<p>Défense : " + champion.DEF + "</p>"));
-        divDiffCarte.append($("<p>Magie : " + champion.MAG + "</p>"));
+        divDiffCarte.append($("<p>Attaque : "    + champion.ATK        + "</p>"));
+        divDiffCarte.append($("<p>Défense : "    + champion.DEF        + "</p>"));
+        divDiffCarte.append($("<p>Magie : "      + champion.MAG        + "</p>"));
 
         //DIV skins
         champion.loadings.forEach((loading) =>  {
