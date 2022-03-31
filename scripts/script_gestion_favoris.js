@@ -19,7 +19,7 @@ function init(){
 
     var favoris = localStorage.getItem("favoris"); // Récupération des favoris
 
-   compteurFavoris = 0; // Initialisation de l'indice à 0
+    compteurFavoris = 0; // Initialisation de l'indice à 0
     if(favoris!=null){ // S'l y a déjà des favoris
         var fav = JSON.parse(favoris); // Convertit l'objet JSON en objet JS
         var i = 0;
@@ -37,7 +37,7 @@ function init(){
 // ============ FONCTIONS D'AFFICHAGE DES FAVORIS ET DU BOUTON =======================
 
 /**
- * Cette fonciton vérifie l'entrée de la barre de recherche
+ * Cette foncton vérifie l'entrée de la barre de recherche
  * elle désactive et change l'affichage du bouton favori à chaque bouton relaché
  */
 function verificationEntree(){
@@ -84,7 +84,7 @@ function verificationEntree(){
  * Fonction qui affiche les favoris qui sont dans le localStorage.
  * Sinon, affiche un message qu'il n'y a aucun favoris
  */
-function affichageFavoris(){ // TODO FAIRE LES LIENS CLIQUABLES BESOIN LUCAS
+function affichageFavoris(){
 
     $("#liste-favoris").empty(); // suppression de tous les favoris affichés
 
@@ -96,11 +96,29 @@ function affichageFavoris(){ // TODO FAIRE LES LIENS CLIQUABLES BESOIN LUCAS
         for(var f in fav){ // Parcourt des clés des favoris
 
             $("#liste-favoris").append("<li id="+f+"></li>"); // Affichage des favoris dans l'html avec JQuery
-            $("#"+f).append("<span title=\"Cliquer pour relancer la recherche\" onClick=\"alert(\'TODO\')\">"+fav[f]+"</span>");
+            $("#"+f).append("<span title=\"Cliquer pour relancer la recherche\" onClick=\"afficherUnFavoris('"+fav[f]+"')\">"+fav[f]+"</span>");
             $("#"+f).append("<img src=\"images/croix.svg\" alt=\"Icone pour supprimer le favori\" width=15 title=\"Cliquer pour supprimer le favori\" onClick=\"supprimerFavoris("+f+")\">");
         
         }
     }
+}
+
+
+/**
+ * Fonction qui affiche le favoris cliqué et
+ * les résultats qu'il donne
+ */
+
+function afficherUnFavoris(texte){ 
+
+    $("#champ_texte").val(texte);
+
+    // TODO
+    // ====================================
+    // Faire les recherche de champion...
+
+    afficheResultat(texte); 
+    // ====================================
 }
 
 
