@@ -82,7 +82,7 @@ function afficheCarte(nameChamp){
         var divLoreCarte       = temp.content.querySelector('.lore'     );
 
         //SECTION carte_principale
-        $(temp.content.querySelector('.carte_principalegit ')).css("background-image", "url(\"" + (champion.loadings[0]).link + "\")");
+        $(temp.content.querySelector('.carte_principale')).css("background-image", "url(\"" + (champion.loadings[0]).link + "\")");
 
         //DIV titre
         $(divTitreCarte).append($("<h1>" + champion.name  + "</h1>"));
