@@ -29,6 +29,10 @@ function init(){
         compteurFavoris = i + 1; // Ajoute 1 à l'indice du dernier élément pour pouvoir rajouter dans le localStrorage
     }
     affichageFavoris(); // Affichage des favoris
+
+
+    // INITIALISATION DES NOM DE CHAMPIONS :
+    initNomCHamp();
 }
 
 
