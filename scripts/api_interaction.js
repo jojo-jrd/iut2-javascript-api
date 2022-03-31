@@ -220,7 +220,7 @@ function getTemplateResultatInfo(name){
         tableInfo.roles = obj.tags;
 
         // nom et dificulté
-        tableInfo.nom = obj.id;
+        tableInfo.name = obj.id;
         tableInfo.difficulty = obj.info.difficulty;
 
         // stat
