@@ -34,6 +34,8 @@ function init(){
     // INITIALISATION DES NOM DE CHAMPIONS :
     initNomCHamp();
 
+    verificationEntree();
+
 }
 
 

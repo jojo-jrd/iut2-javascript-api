@@ -1,5 +1,6 @@
 // =============================  CONSTANTES =================================
 var NOM_CHAMPION;           // => contient la liste des noms de champions disponible
+var NB_RESULTAT = 5;        // => 
 // ================================================================================
 
 /**
@@ -61,10 +62,14 @@ function clickResultat(nomchamp){
     $(temp.content.querySelector('.main_sec')).hide();
 }
 
+function enleverCarte(){
+    var temp = document.querySelector('#templateResultat');
+    $(temp.content.querySelector('.main_sec')).show();
+    console.log("ENLEVER");
+    $("#bloc-resultats").remove("#templateCarte");
+}
 
 function afficheCarte(nameChamp){
-    $("#bloc-resultats").empty();
-    $("#bloc-gif-attente").css("display", "block");
 
     getTemplateCarteInfo(nameChamp).then((champion) => {
         
@@ -158,11 +163,28 @@ function afficherPlus(){
 }
 
 function traitementResultat(){
-    var nomchamp = $("#champ_texte").val().trim();
-    // TODO
-    // <p class="info-vide">( &empty; Aucun résultat trouvé )</p>
-    afficheResultat(nomchamp);
+    // 1 - Clean la zonne d'affichage :
+    $("#bloc-resultats").empty();
+    $("#bloc-gif-attente").css("display", "block");
+
+    // 2 - recuperation de l'entree utilisateur puis
+    // => conversion en liste de nom valide
+    var entree = $("#champ_texte").val().trim();
+    var names = ListeDePertinence(entree);
+
+    // // 3 - Traitement des données
+    // if(names.length == 0){
+    //     // si pas de noms dans le tableau alors on affiche un message
+    //     $("#bloc-resultats").append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>)");
+    // }else{
+    //     //sinon affiche autant de résultats que de noms.
+    //     names.forEach(nom =>{
+    //         afficheResultat(nom);
+    //     });
+    // }
+    afficheResultat(entree);
 }
+
 
 
 /**
@@ -182,27 +204,33 @@ function ListeDePertinence(entree){
         lowerNom = nom.toLowerCase();
 
         // créer une nouvelle entrée par nom dans la map
-        obj = {};
-        obj[nom] = 0;
-        listePointChamp.push(obj);
+        obj = {'nom': nom, 'pertinence':0};
+        
 
         // cas ou entree est un nom exacte
         if (lowerEntree == lowerNom) {
+            debug("Retourne le nom :", [nom]);
             return nom;
         }else {
             // cas ou ce n'est pas un nom : 
             // -> recherche par occurence de chaque caractère = +1 points à chaque occurence:
             for(let c of lowerEntree){
-                tmp= lowerNom.split(c);
-                listePointChamp[nom] = tmp.length-1;
+                tmp = lowerNom.split(c);
+                obj.pertinence += tmp.length-1;
             }
             // -> recherche de la chaine entière = +10point si trouvé :
             if (lowerNom.indexOf(lowerEntree) != -1){
-                listePointChamp[nom] += 10;
+                obj.pertinence += 10;
             }
         }
+        // ajout de l'objet dans le tableau
+        listePointChamp.push(obj);
     });
+    debug("Sortie de la boucle => on se met à trier les pertinents :");
     // Si on arrive ici alors auccun nom complet n'a était trouvé alors on passe en mode recherche complxe
+    listePointChamp.sort(function(a,b){
+        return a.pertinence - b.pertinence;
+    });
     console.log(listePointChamp);
     // TODO : trier par value et renvoyer les pertinents.
 }
