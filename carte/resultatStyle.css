@@ -12,7 +12,7 @@ font-family: 'Friz std';
 .main_sec{
     width: 500px;
     height: 170px;
-    /* background-image: url("Aatrox_0.jpg"); */
+    background-image: url("Aatrox_0.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50px;

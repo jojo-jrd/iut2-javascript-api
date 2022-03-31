@@ -30,13 +30,11 @@ function init(){
     }
     affichageFavoris(); // Affichage des favoris
 
-<<<<<<< HEAD
-    $("#bloc-resultats").empty();
-=======
 
+    $("#bloc-resultats").empty();
     // INITIALISATION DES NOM DE CHAMPIONS :
     initNomCHamp();
->>>>>>> 92933262ae0812d6d1e4e8eb961c32930570acee
+
 }
 
 
@@ -120,6 +118,7 @@ function affichageFavoris(){
 function afficherUnFavoris(texte){ 
     $("#champ_texte").val(texte);
     traitementResultat();
+    verificationEntree();
 }
 
 
