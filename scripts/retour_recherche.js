@@ -24,15 +24,24 @@ function afficheResultat(nameChamp){
         
         $("#bloc-gif-attente").css("display", "none");
 
+
+        
+        // 1 - création d'une "resultat vide" et set d'un id unique (nom du champion):
         var temp = document.querySelector('#templateResultat');
-        var divRoleResultat = temp.content.querySelector('.role_resultat');
-        var divNameResultat = temp.content.querySelector('.name_resultat');
-        var divStatResultat = temp.content.querySelector('.stat_resultat');
-        var divLoreResultat = temp.content.querySelector('.lore_resultat');
+        $(temp.content.querySelector(".main_sec")).attr({'id': nameChamp+"R"});
+        var clone = document.importNode(temp.content, true);
+        $("#bloc-resultats").append(clone);
+
+
+
+        var divRoleResultat = document.querySelector('#'+nameChamp+'R .role_resultat');
+        var divNameResultat = document.querySelector('#'+nameChamp+'R .name_resultat');
+        var divStatResultat = document.querySelector('#'+nameChamp+'R .stat_resultat');
+        var divLoreResultat = document.querySelector('#'+nameChamp+'R .lore_resultat');
 
         //SECTION main_sec
-        $(temp.content.querySelector('.main_sec')).css("background-image", "url(" + (champion.splashs[0]).link + ")");
-        $(temp.content.querySelector('.main_sec')).attr("onClick","clickResultat(\""+nameChamp+"\")");
+        $('#'+nameChamp+'R').css("background-image", "url(" + (champion.splashs[0]).link + ")");
+        $('#'+nameChamp+'R').attr("onClick","clickResultat(\""+nameChamp+"\")");
 
         //DIV role_resultat
         champion.roles.forEach((tag) =>  {
@@ -49,24 +58,24 @@ function afficheResultat(nameChamp){
 
         //DIV lore_resultat
         $(divLoreResultat).append($("<p>" + champion.lore + "</p><span id=\"voir_plus\">Voir plus</span>"));
-
-        var clone = document.importNode(temp.content, true);
-        $("#bloc-resultats").append(clone);
     });
 
 }
 
 function clickResultat(nomchamp){
-    var temp = document.querySelector('#templateResultat');
+    //var temp = document.querySelector('#templateResultat');
     afficheCarte(nomchamp);
-    $(temp.content.querySelector('.main_sec')).hide();
+    $('#bloc-resultats .main_sec').hide(); 
 }
 
-function enleverCarte(){
-    var temp = document.querySelector('#templateResultat');
-    $(temp.content.querySelector('.main_sec')).show();
-    console.log("ENLEVER");
-    $("#bloc-resultats").remove("#templateCarte");
+function enleverCarte(nameChamp){
+    // supprime la carte
+    var node = document.getElementById(nameChamp+'C');
+    var parent = document.getElementById("bloc-resultats");
+    parent.removeChild(node);
+    
+    // réaffiche les resultats
+    $('#bloc-resultats .main_sec').show();  
 }
 
 function afficheCarte(nameChamp){
@@ -75,19 +84,26 @@ function afficheCarte(nameChamp){
         
         $("#bloc-gif-attente").css("display", "none");
 
-        var temp = document.querySelector('#templateCarte');
 
-        var divTitreCarte      = temp.content.querySelector('.titre'    );
-        var divRoleCarte       = temp.content.querySelector('.roles'    );
-        var divStatCarte       = temp.content.querySelector('.stats'    );
-        var divDiffCarte       = temp.content.querySelector('.difficult');
-        var divSkinsCarte      = temp.content.querySelector('.skins'    );
-        var divSpellsCarte     = temp.content.querySelector('.spells'   );
-        var secPassifCarte     = temp.content.querySelector('.passif'   );
-        var divLoreCarte       = temp.content.querySelector('.lore'     );
+        // 1 - création d'une "carte vide" et set d'un id unique (nom du champion):
+        var temp = document.querySelector('#templateCarte');
+        $(temp.content.querySelector(".carte_principale")).attr({'id': nameChamp+'C'});
+        var clone = document.importNode(temp.content, true);
+        $("#bloc-resultats").append(clone);
+
+
+        var divTitreCarte      = document.querySelector('#'+nameChamp+'C .titre'    );
+        var divRoleCarte       = document.querySelector('#'+nameChamp+'C .roles'    );
+        var divStatCarte       = document.querySelector('#'+nameChamp+'C .stats'    );
+        var divDiffCarte       = document.querySelector('#'+nameChamp+'C .difficult');
+        var divSkinsCarte      = document.querySelector('#'+nameChamp+'C .skins'    );
+        var divSpellsCarte     = document.querySelector('#'+nameChamp+'C .spells'   );
+        var secPassifCarte     = document.querySelector('#'+nameChamp+'C .passif'   );
+        var divLoreCarte       = document.querySelector('#'+nameChamp+'C .lore'     );
 
         //SECTION carte_principale
-        $(temp.content.querySelector('.carte_principale')).css("background-image", "url(\"" + (champion.loadings[0]).link + "\")");
+        $('#'+nameChamp+'C').css("background-image", "url(\"" + (champion.loadings[0]).link + "\")");
+        $('#'+nameChamp+'C #bouton-enlever-carte').attr("onClick","enleverCarte(\""+nameChamp+"\")");
 
         //DIV titre
         $(divTitreCarte).append($("<h1>" + champion.name  + "</h1>"));
@@ -142,9 +158,6 @@ function afficheCarte(nameChamp){
 
         //DIV lore
         $(divLoreCarte).append($("<p>" + champion.lore + "</p><span id=\"voir_plus\"></span>"));
-        
-        var clone = document.importNode(temp.content, true);
-        $("#bloc-resultats").append(clone);
     });
 }
 
@@ -172,17 +185,16 @@ function traitementResultat(){
     var entree = $("#champ_texte").val().trim();
     var names = ListeDePertinence(entree);
 
-    // // 3 - Traitement des données
-    // if(names.length == 0){
-    //     // si pas de noms dans le tableau alors on affiche un message
-    //     $("#bloc-resultats").append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>)");
-    // }else{
-    //     //sinon affiche autant de résultats que de noms.
-    //     names.forEach(nom =>{
-    //         afficheResultat(nom);
-    //     });
-    // }
-    afficheResultat(entree);
+    // 3 - Traitement des données
+    if(names.length == 0){
+        // si pas de noms dans le tableau alors on affiche un message
+        $("#bloc-resultats").append("<p class=\"info-vide\">( &empty; Aucun résultat trouvé )</p>)");
+    }else{
+        //sinon affiche autant de résultats que de noms.
+        names.forEach(nom =>{
+            afficheResultat(nom);
+        });
+    }
 }
 
 
@@ -195,27 +207,28 @@ function traitementResultat(){
  * @returns {Array<String>}
  */
 function ListeDePertinence(entree){
-    debug("Entrée dans la liste de pertinence avec entree=", [entree]);
+    debug("Entrée dans la liste de pertinence avec entree =", [entree]);
     // initialisation des vars :
-    lowerEntree = entree.toLowerCase()
-    listePointChamp = [];
+    var lowerEntree = entree.toLowerCase();
+    var listePointChamp = [];
+    var nom_valide;
 
     NOM_CHAMPION.forEach(nom => {
         lowerNom = nom.toLowerCase();
 
         // créer une nouvelle entrée par nom dans la map
-        obj = {'nom': nom, 'pertinence':0};
+        var obj = {'name': nom, 'pertinence':0};
         
 
         // cas ou entree est un nom exacte
         if (lowerEntree == lowerNom) {
-            debug("Retourne le nom :", [nom]);
-            return nom;
+            nom_valide = nom;
+            return;
         }else {
             // cas ou ce n'est pas un nom : 
             // -> recherche par occurence de chaque caractère = +1 points à chaque occurence:
             for(let c of lowerEntree){
-                tmp = lowerNom.split(c);
+                let tmp = lowerNom.split(c);
                 obj.pertinence += tmp.length-1;
             }
             // -> recherche de la chaine entière = +10point si trouvé :
@@ -226,11 +239,23 @@ function ListeDePertinence(entree){
         // ajout de l'objet dans le tableau
         listePointChamp.push(obj);
     });
-    debug("Sortie de la boucle => on se met à trier les pertinents :");
-    // Si on arrive ici alors auccun nom complet n'a était trouvé alors on passe en mode recherche complxe
-    listePointChamp.sort(function(a,b){
-        return a.pertinence - b.pertinence;
-    });
-    console.log(listePointChamp);
-    // TODO : trier par value et renvoyer les pertinents.
+
+    if (nom_valide !== undefined){
+        debug("Retourne le nom :", [nom_valide]);
+        return [nom_valide];
+    }else{
+        // trie dans l'ordre décroissant
+        listePointChamp.sort(function(a,b){
+            return b.pertinence - a.pertinence;
+        });
+        
+        //On construit la liste de nom avec les X premier résultats le plus pertinent puis on la retourne:
+        var listeNomResultat = [];
+        for(let i=0; i<NB_RESULTAT; ++i){
+            listeNomResultat.push(listePointChamp[i].name);
+        }
+        debug("Retourne la liste :", [listeNomResultat]);
+        
+        return listeNomResultat;
+    }    
 }

@@ -15,6 +15,8 @@ function debug(msg, param){
                 console.log(element);
             });
         }
+        // saute une ligne après chaque débug
+        console.log("   ");
     }
 }
 
