@@ -1,5 +1,6 @@
 // VARIABLE GLOBALE
 var compteurFavoris; // Compteur qui sert de clé dans le localStrorage pour le prochain ajout de favori
+var NOMBRE_PROPOSITIONS = 5;
 
 
 
@@ -82,6 +83,20 @@ function verificationEntree(){
         
             $("#btn-favoris").append("<img src=\"images/etoile-vide.svg\" alt=\"Etoile vide\" width=22 >"); // Affiche une étoile vide
         }
+
+        //================ Liste de proposition de résultat ============
+        // 1 - récupérer une liste de 5 propositions de noms :
+        var noms = ListeDePertinence(texte);
+
+        // 2 - supprimer les propositions déjà présentes dans la dataliste
+        $("#Noms-Champions").empty();
+
+        // 3 - enregistrer les nouvelles propositions
+        for(var i = 0; i<NOMBRE_PROPOSITIONS; ++i){
+            $("#Noms-Champions").append("<option value="+noms[i]+">");
+        }
+
+        //======================== END LIST ============================
 
     }
 }

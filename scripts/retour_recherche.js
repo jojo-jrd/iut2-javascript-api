@@ -1,6 +1,6 @@
 // =============================  CONSTANTES =================================
 var NOM_CHAMPION;           // => contient la liste des noms de champions disponible
-var NB_RESULTAT = 5;        // => 
+var NB_RESULTAT = 20;        // => 
 // ================================================================================
 
 /**
