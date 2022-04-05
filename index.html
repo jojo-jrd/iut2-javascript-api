@@ -21,7 +21,7 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input id="champ_texte" type="text" placeholder="Que cherchez-vous ?" onkeyup="verificationEntree()"/>
+					<input id="champ_texte" type="text" list="Noms-Champions" placeholder="Que cherchez-vous ?" onkeyup="verificationEntree()"/>
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -212,7 +212,12 @@
 					</div>
 				</section>
 			</section>    
-		</template>		
+		</template>	
+		
+		<!-- GESTION DES SUGESTIONS DE NOMS DE CHAMP -->
+		<datalist id="Noms-Champions">
+			<!-- <option value="Chocolate"> -->
+		</datalist>
 	</body>
 </html>
 
