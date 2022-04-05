@@ -44,7 +44,7 @@ function init(){
         if (numTouche==13) { // Si touche entrée préssée
             traitementResultat();
             verificationEntree();
-        }else if(event.ctrlKey && numTouche==170){
+        }else if(event.ctrlKey && (numTouche==220 || numTouche==170)){
             ajouterFavoris();
         }
       
