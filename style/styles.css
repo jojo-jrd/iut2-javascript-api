@@ -170,75 +170,77 @@ p#explication {
     padding: 0;
     color: white;
     font-family: 'Friz std';
-    }
-    .main_sec{
-        width: 500px;
-        height: 220px;
-        background-size: cover;
-        background-repeat: no-repeat;
-        border-radius: 50px;
-        text-align: center;
-        margin-top: 50px;
-    }
-    .role_resultat{
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-        padding: 0 10px 0 10px;
-    }
-    .stat_resultat{
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 15px;
-        padding: 0 5px 0 5px;
-    }
-    .main_sec>section{
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    .main_sec section div p{
-        color: #C29860;
-        margin: 0;
-        font-weight: bold;
-        letter-spacing: 1px;
-        font-size: 1.8em;
-    }
-    .name_resultat{
-        text-align: center;
-        position: relative;
-    }
-    .name_resultat h1{
-        margin: 0;
-        height: 10%;
-        font-size: 3.5em;
-        color: white;
-    }
-    .name_resultat p{
-        letter-spacing: 3px;
-        font-size: 1.6em;
-    }
-    .main_sec section div p:first-of-type{
-        color: white;
-    }
-    .lore_resultat p{
-        text-align: justify;
-        width: 90%;
-        height: 45px;
-        overflow: hidden;
-        margin: 0;
-        font-size: 1.1em;
-        letter-spacing: 1px;
-    }
-    .lore_resultat{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+}
+.main_sec{
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    text-align: center;
+    margin-top: 50px;
+}
+.role_resultat{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 0 10px 0 10px;
+}
+.stat_resultat{
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    padding: 0 5px 0 5px;
+}
+.main_sec>section{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.main_sec section div p{
+    color: #C29860;
+    margin: 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.8em;
+}
+.name_resultat{
+    text-align: center;
+    position: relative;
+}
+.name_resultat h1{
+    margin: 20px 0 0 0;
+    height: 10%;
+    font-size: 3.5em;
+    color: white;
+}
+.name_resultat p{
+    letter-spacing: 3px;
+    font-size: 1.6em;
+}
+.main_sec section div p:first-of-type{
+    color: white;
+}
+.lore_resultat p{
+    text-align: justify;
+    width: 90%;
+    height: 45px;
+    overflow: hidden;
+    margin: 0;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+.lore_resultat{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    #voir_plus{
-        color: #C29860;
-        width: 90%;
-    }
+#voir_plus{
+    color: #C29860;
+    width: 90%;
+    margin-bottom: 20px;
+}
 
 
 
@@ -263,6 +265,13 @@ p#explication {
     margin: auto;
     margin-top: 150px;
 }
+button{
+    cursor: pointer;
+}
+#bouton-enlever-carte{
+    margin-left: 90%;
+    margin-top: 3%;
+}
 .carte_principale>section{
     display: flex;
     flex-direction: column;
@@ -272,6 +281,7 @@ p#explication {
 .titre h1 {
     font-size: 5em;
     margin: 0;
+    color: white;
 }
 .titre h4{
     color: rgb(196, 196, 196);
@@ -406,6 +416,7 @@ p#explication {
     font-size: 1.06em;
 }
 .lore p{
+    padding: 24px;
     margin: 0;
 }
 
