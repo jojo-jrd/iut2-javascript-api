@@ -36,6 +36,20 @@ function init(){
 
     verificationEntree();
 
+    // Ajout des raccourcis au clavier
+    document.addEventListener('keydown', (event) => {
+        const numTouche = event.keyCode;
+      
+        if (numTouche==13) { // Si touche entrée préssée
+            traitementResultat();
+            verificationEntree();
+        }else if(event.ctrlKey && numTouche==170){
+            ajouterFavoris();
+        }
+      
+
+      }, false);
+
 }
 
 
@@ -150,10 +164,8 @@ function ajouterFavoris(){
             }
         }
         if(impossible){ // Si déjà dans les favoris
-            var verif = confirm("Etes vous sûr de vouloir supprimer \""+texte+"\" des favoris ?");
-            if(verif){ // Demande de suppression pour le champ-texte courant
-                supprimerFavoris(favAsupprimer); // Suppression du favoris
-            }
+            
+            supprimerFavoris(favAsupprimer); // Suppression du favoris
         }else{ // Demande d'ajout aux favoris
             ajout = true;
         }
@@ -191,17 +203,24 @@ function ajouterFavoris(){
  * @param {String} id  id du favoris à supprimer
  */
 function supprimerFavoris(id){
-    $("#"+id).remove(); // Suppression du favoris dans l'affichage
-    var favoris = localStorage.getItem("favoris");
+    
+    var favoris = localStorage.getItem("favoris"); // Recuperation des favoris
+    var verif = false;
     if(favoris!=null){
         var fav = JSON.parse(favoris); // Convertit l'objet JSON en objet JS
-        for(var f in fav){
-            if(f==id){ // Si id voulu
-                delete fav[f]; // Suppression de l'élément en favoris
-            }
+        if(fav!=null && fav[id]!=null){ // Si favori existant 
+            verif = confirm("Etes vous sûr de vouloir supprimer \""+fav[id]+"\" des favoris ?");
         }
-        localStorage.setItem("favoris",JSON.stringify(fav)) // Convertit l'objet JS en objet JSON et ajout au localStrorage
     }
-    affichageFavoris(); // Mise à jour de l'affichage si plus de favori
-    verificationEntree(); // Mise à jour de l'icone du bouton favoris
+    
+    if(verif){ // Demande de suppression pour le champ-texte courant
+        $("#"+id).remove(); // Suppression du favoris dans l'affichage
+            
+        delete fav[id]; // Suppression de l'élément en favoris
+
+        localStorage.setItem("favoris",JSON.stringify(fav)) // Convertit l'objet JS en objet JSON et ajout au localStrorage
+        
+        affichageFavoris(); // Mise à jour de l'affichage si plus de favori
+        verificationEntree(); // Mise à jour de l'icone du bouton favoris
+    }
 }
