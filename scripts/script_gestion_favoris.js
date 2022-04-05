@@ -51,6 +51,8 @@ function init(){
 
       }, false);
 
+      // init du champ de selection du nombre de resultat
+      verifSaisiNbResultat();
 }
 
 
