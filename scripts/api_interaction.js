@@ -1,6 +1,6 @@
 // =============================  CONSTANTES =================================
 // AIDE DEVELOPPEUR :
-var DEBUG = true;           // => passer à false avant la mise en développement 
+var DEBUG = false;           // => passer à false avant la mise en développement 
 /**
  * Affiche le message voulu si le mode débug est actif
  * @param {String} msg  message a afficher

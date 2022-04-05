@@ -266,8 +266,12 @@ function ListeDePertinence(entree){
 
 function getNbResultat(){
     var resultatVoulue =  $("#nb-resultat").val().trim();
-    if(resultatVoulue=="" || parseInt(resultatVoulue)==NaN){
+    if(resultatVoulue=="" || parseInt(resultatVoulue,10)==NaN){
+        
+        console.log(1);
         return 1;
+        
     }
+    console.log(parseInt(resultatVoulue,10));
     return parseInt(resultatVoulue,10);
 }
