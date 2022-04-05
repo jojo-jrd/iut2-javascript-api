@@ -80,7 +80,11 @@ p#explication {
 	padding: 0.7em;
 	border: 0.3em solid var(--main-green);
 }
-
+#nb-resultat{
+    color: black;
+    width: 60px;
+    font-size: 1.5em;
+}
 #bloc-recherche>button {
 	padding: 0.8em 0.8em;
 	/* Bordure invisible pour que le hover ne bouge pas le bouton */
