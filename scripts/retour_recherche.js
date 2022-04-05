@@ -259,3 +259,11 @@ function ListeDePertinence(entree){
         return listeNomResultat;
     }    
 }
+
+function getNbResultat(){
+    var resultatVoulue =  $("#nb-resultat").val().trim();
+    if(resultatVoulue=="" || parseInt(resultatVoulue)==NaN){
+        return 1;
+    }
+    return parseInt(resultatVoulue,10);
+}
