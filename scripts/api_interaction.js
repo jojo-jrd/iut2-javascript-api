@@ -23,10 +23,10 @@ function debug(msg, param){
 // API ENDPOINT :
 var API_ALL_CHAMPIONS = "https://ddragon.leagueoflegends.com/cdn/12.5.1/data/fr_FR/champion.json";
 var API_NAME_CHAMPION = "https://ddragon.leagueoflegends.com/cdn/12.5.1/data/fr_FR/champion/";      // + Nomchamp.json
-var API_IMAGE_SPLASH = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";               // + Nomchamp_X.jpg
-var API_IMAGE_LOADING = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/";             // + Nomchamp_X.jpg
-var API_IMAGE_PASSIV = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/passive/"                 // + Nomchamp_P.png
-var API_IMAGE_SPELL = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/";                   // + SpellName.png
+var API_IMAGE_SPLASH = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/";               // + Nomchamp_X.jpg
+var API_IMAGE_LOADING = "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/";             // + Nomchamp_X.jpg
+var API_IMAGE_PASSIV = "https://ddragon.leagueoflegends.com/cdn/12.5.1/img/passive/"                 // + Nomchamp_P.png
+var API_IMAGE_SPELL = "https://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/";                   // + SpellName.png
 
 // SPECIAL REQUEST PARAM :
 var NAME_ONLY = 0           // => récupère seuleument le/les noms
