@@ -1,6 +1,5 @@
 // =============================  CONSTANTES =================================
 var NOM_CHAMPION;           // => contient la liste des noms de champions disponible
-var NB_RESULTAT = 5;        // => 
 // ================================================================================
 
 /**
@@ -251,7 +250,8 @@ function ListeDePertinence(entree){
         
         //On construit la liste de nom avec les X premier résultats le plus pertinent puis on la retourne:
         var listeNomResultat = [];
-        for(let i=0; i<NB_RESULTAT; ++i){
+        var nb_resultat = getNbResultat();
+        for(let i=0; i<nb_resultat; ++i){
             listeNomResultat.push(listePointChamp[i].name);
         }
         debug("Retourne la liste :", [listeNomResultat]);

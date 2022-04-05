@@ -11,7 +11,7 @@
 		<header>
 			<h1>Recherche d'offres d'emploi</h1>
 
-			<p id="explication">Cette page permet de rechercher des champions League of Legend via l'API publique de  <a href="https://https://www.riotgames.com/fr" target="_blank">riotgames.com</a>.<br>
+			<p id="explication">Cette page permet de rechercher des champions League of Legend via l'API publique de  <a href="https://www.riotgames.com/fr" target="_blank">riotgames.com</a>.<br>
 			Saisir le nom d'une ville, d'un poste, ... pour rechercher les postes correspondants, et enregistrer vos recherches favorites pour les retrouver facilement.</p>
 		</header>
 		<hr>
@@ -21,7 +21,7 @@
 			<section id="section-recherche">
 				<div id="bloc-recherche">
 					<!-- Champ de recherche -->
-					<input id="champ_texte" type="text" placeholder="Que cherchez-vous ?" onkeyup="verificationEntree()"/>
+					<input id="champ_texte" type="text" list="Noms-Champions" placeholder="Que cherchez-vous ?" onkeyup="verificationEntree()"/>
 
 					<!-- Boutons -->
 					<button id="btn-lancer-recherche" type="button"
@@ -31,7 +31,7 @@
 					</button>
 
 					<button id="btn-favoris" type="button" onclick="ajouterFavoris()"
-					title="Ajouter la recherche aux favoris" disabled>
+					title="Ajouter la recherche aux favoris" class="btn_clicable" disabled>
 						<!-- Icone étoile vide => Recherche pas en favoris -->
 						<img src="images/etoile-vide.svg" alt="Etoile vide" width=22 >
 
@@ -40,6 +40,7 @@
 
 						<!-- (Icones provenant de flaticon.com) -->
 					</button>
+					<input id="nb-resultat" type="number" placeholder="0">
 				</div>
 
 				<!-- Résultats de recherche -->
@@ -212,7 +213,12 @@
 					</div>
 				</section>
 			</section>    
-		</template>		
+		</template>	
+		
+		<!-- GESTION DES SUGESTIONS DE NOMS DE CHAMP -->
+		<datalist id="Noms-Champions">
+			<!-- <option value="Chocolate"> -->
+		</datalist>
 	</body>
 </html>
 
