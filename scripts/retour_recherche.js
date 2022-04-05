@@ -12,6 +12,10 @@ function initNomCHamp(){
     requestChampionsList(NAME_ONLY).then((resp)=>{
         NOM_CHAMPION = resp;
         debug("Fin initialisation. NOM_CHAMPION=", [NOM_CHAMPION]);
+        $("#nb-resultat").attr({
+            "min":1,
+            "max":NOM_CHAMPION.length
+        });
     });
 }
 
