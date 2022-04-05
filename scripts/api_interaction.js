@@ -25,7 +25,7 @@ var API_ALL_CHAMPIONS = "https://ddragon.leagueoflegends.com/cdn/12.5.1/data/fr_
 var API_NAME_CHAMPION = "https://ddragon.leagueoflegends.com/cdn/12.5.1/data/fr_FR/champion/";      // + Nomchamp.json
 var API_IMAGE_SPLASH = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/";               // + Nomchamp_X.jpg
 var API_IMAGE_LOADING = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/";             // + Nomchamp_X.jpg
-var API_IMAGE_PASSIV = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/passive/"                 // + Nomchamp_P.png
+var API_IMAGE_PASSIV = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/passive/";                 // + Nomchamp_P.png
 var API_IMAGE_SPELL = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/spell/";                   // + SpellName.png
 
 // SPECIAL REQUEST PARAM :
