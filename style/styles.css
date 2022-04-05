@@ -1,5 +1,4 @@
-/* Importation de la police Roboto */
-@import url(https://fonts.googleapis.com/css?family=Roboto);
+/* Importation de la police Friz */
 @font-face {
     font-family: "Friz std";
     src: url("Friz-Quadrata-Std-Medium.woff") format("woff");
@@ -12,9 +11,8 @@
 /* Définition des principales couleurs */
 :root {
 	--text-color : #fafafa; /* Texte presque blanc */
-	--background: #34495e; /* Fond bleu foncé */
-	--main-green: rgb(26, 188, 156);
-	--active-green: rgb(20, 156, 128);
+	--main-orange: #c8aa6e;
+	--active-orange: #dba55e;
 }
 
 * {
@@ -22,8 +20,8 @@
 }
 
 body {
-	background-color: var(--background);
-	font: 14pt Roboto, Arial, sans-serif;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../images/background-image.jpg) fixed;
+	font: 14pt Friz std, Arial, sans-serif;
 	margin: 0;
 	padding: 0;
 	width: 90%;
@@ -41,7 +39,7 @@ h1 {
 	text-align: center;
 	font-variant: small-caps;
 	font-size: 2.5em;
-	color: var(--main-green);
+	color: var(--main-orange);
 }
 
 p#explication {
@@ -70,6 +68,7 @@ p#explication {
 
 #bloc-recherche>input[type=text],
 #bloc-recherche>button {
+    font-family: Friz std;
 	display: block;
 	font-size: 1.2em ;
 }
@@ -78,17 +77,18 @@ p#explication {
 	color: #2d2d2d; /* Presque noir */
 	flex: 1;
 	padding: 0.7em;
-	border: 0.3em solid var(--main-green);
+	border: 0.3em solid var(--main-orange);
 }
 #nb-resultat{
     color: black;
     width: 58px;
+    font-family: Friz std;
     font-size: 1.2em;
 }
 #bloc-recherche>button {
 	padding: 0.8em 0.8em;
 	/* Bordure invisible pour que le hover ne bouge pas le bouton */
-	border: 1px solid var(--main-green);
+	border: 1px solid var(--main-orange);
 
 	/* Par défaut, les boutons sont en gris
 	 (S'ils sont "clicables", ils passent en vert) */
@@ -97,7 +97,7 @@ p#explication {
 
 /* Apparences des boutons clicables */
 #bloc-recherche>button.btn_clicable {
-	background-color: var(--main-green);
+	background-color: var(--main-orange);
 }
 
 #bloc-recherche>button:focus {
@@ -112,7 +112,7 @@ p#explication {
 }
 
 #bloc-recherche>button.btn_clicable:active {
-	background-color: var(--active-green);
+	background-color: var(--active-orange);
 }
 
 /* GIF de chargement (caché par défaut) */
@@ -130,7 +130,7 @@ p#explication {
 
 /* Section de la barre de séparation */
 #section-separation {
-	border-left: 2px dashed var(--main-green);
+	border-left: 2px dashed var(--main-orange);
 	margin: 0 20px;
 }
 
@@ -159,7 +159,7 @@ p#explication {
 }
 
 #liste-favoris li span:hover {
-	color: var(--main-green);
+	color: var(--main-orange);
 }
 
 
@@ -181,6 +181,7 @@ p#explication {
     height: auto;
     background-size: cover;
     background-repeat: no-repeat;
+    border: solid 2px var(--main-orange);
     border-radius: 50px;
     text-align: center;
     margin-top: 50px;
@@ -260,7 +261,7 @@ p#explication {
     font-family: 'Friz std';
 }
 .carte_principale{
-    width: 800px;
+    width: 1000px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 70%;
@@ -301,21 +302,18 @@ button{
     font-weight: bold;
     font-size: 1.3em;
     width: 100%;
-    color: #C29860;
     display: flex;
     justify-content: space-around;
 }
-.role p{
-    margin: 0;
+.infos div{
+    width: 33%;
 }
-.stats p{
+.roles p, .stats p, .difficult p{
     margin: 0;
-}
-.difficult p{
-    margin: 0;
+    color: #C29860;
 }
 
-.all p:nth-child(1){
+.infos p:nth-child(1){
     color: white;
     margin-bottom: 2%;
     letter-spacing: 2px;
@@ -352,7 +350,8 @@ button{
     display: flex;
 }
 .spells div p{
-    margin-top: 0;
+    text-align: justify;
+    margin-top: 5px;
     font-weight: lighter;
     font-size: 1.06em;
 }
@@ -397,8 +396,10 @@ button{
     justify-content: center;
 }
 .passif p{
+    padding: 0 5px 0 5px;
+    text-align: justify;
     font-size: 1.06em;
-    margin-top: 0;
+    margin-top: 5px;
 }
 .passif div div h3{
     margin-left: 5px;
@@ -420,6 +421,7 @@ button{
     font-size: 1.06em;
 }
 .lore p{
+    text-align: justify;
     padding: 24px;
     margin: 0;
 }

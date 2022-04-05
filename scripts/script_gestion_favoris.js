@@ -76,7 +76,7 @@ function verificationEntree(){
     }else{
 
         $("#btn-favoris").prop('disabled', false); // Active le bouton
-        $("#btn-favoris").css("background-color","var(--main-green)"); // Mets le fond en vert
+        $("#btn-favoris").css("background-color","var(--main-orange)"); // Mets le fond en vert
 
         var dejaExistant = false;
         var favoris = localStorage.getItem("favoris");
