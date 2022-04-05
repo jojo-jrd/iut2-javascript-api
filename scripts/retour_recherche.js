@@ -254,7 +254,9 @@ function ListeDePertinence(entree){
         
         //On construit la liste de nom avec les X premier résultats le plus pertinent puis on la retourne:
         var listeNomResultat = [];
-        var nb_resultat = getNbResultat();
+        verifSaisiNbResultat();
+        var nb_resultat = $("#nb-resultat").val();
+
         for(let i=0; i<nb_resultat; ++i){
             listeNomResultat.push(listePointChamp[i].name);
         }
@@ -264,14 +266,18 @@ function ListeDePertinence(entree){
     }    
 }
 
-function getNbResultat(){
+function verifSaisiNbResultat(){
     var resultatVoulue =  $("#nb-resultat").val().trim();
-    if(resultatVoulue=="" || parseInt(resultatVoulue,10)==NaN){
+    var resultat = parseInt(resultatVoulue,10);
+    if(resultatVoulue=="" || resultat==NaN){
+
+        $("#nb-resultat").val(5);
         
-        console.log(1);
-        return 1;
-        
+    }else if(resultat<1){
+        $("#nb-resultat").val(1);
+    }else if(resultat>NOM_CHAMPION.length){
+        $("#nb-resultat").val(NOM_CHAMPION.length);
     }
-    console.log(parseInt(resultatVoulue,10));
-    return parseInt(resultatVoulue,10);
+
+
 }
