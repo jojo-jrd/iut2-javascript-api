@@ -12,9 +12,17 @@
 			<h1>Recherche de Champion League of Legend</h1>
 
 			<p id="explication">Cette page permet de rechercher des champions League of Legend via l'API publique de  <a href="https://www.riotgames.com/fr" target="_blank">riotgames.com</a>.<br>
-			Saisir le nom d'un champion (exemple: Aatrox, Ashe) pour trouver les informations correspondantes au champion recherché. <br>
+			Saisir le nom d'un champion pour trouver les informations correspondantes au champion recherché. <br>
 			Si vous ne connaissez pas le nom d'un champion, vous pouvez taper uniquement quelques lettres qui composent son nom pour pouvoir le retrouver. <br>
-			Vous pouvez enregistrer votre recherche facilement grâce à l'étoile.</p>
+			Vous pouvez enregistrer votre recherche facilement grâce à l'étoile.<br> <br>
+			Exemple de champion : <br>
+			-Aatrox <br>
+			-Poppy <br>
+			-GangPlank <br>
+			-Pyke <br>
+			-Cassiopeia <br>
+			</p>
+
 		</header>
 		<hr>
 
@@ -42,7 +50,8 @@
 
 						<!-- (Icones provenant de flaticon.com) -->
 					</button>
-					<input id="nb-resultat" type="number" placeholder="0" onblur="verifSaisiNbResultat()">
+					<input title="Nombre de résultat par recherche" id="nb-resultat" type="number" placeholder="0" onblur="verifSaisiNbResultat()">
+					
 				</div>
 
 				<!-- Résultats de recherche -->

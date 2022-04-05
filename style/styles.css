@@ -262,6 +262,7 @@ p#explication {
 }
 .carte_principale{
     width: 1000px;
+    border: solid 2px var(--main-orange);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 70%;
@@ -306,15 +307,25 @@ button{
     justify-content: space-around;
 }
 .infos div{
-    width: 33%;
+    padding: 8px;
+    border: solid 1px var(--main-orange);
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
 }
 .roles p, .stats p, .difficult p{
     margin: 0;
     color: #C29860;
 }
 
+.stats{
+    width: 33%;
+}
+.roles, .difficult{
+    width: 25%;
+}
 .infos p:nth-child(1){
     color: white;
+    font-size: 1.4em;
     margin-bottom: 2%;
     letter-spacing: 2px;
 }
@@ -367,6 +378,8 @@ button{
     flex-direction: column;
 }
 .passif{
+    padding: 8px;
+    border: solid 1px var(--main-orange);
     margin-top: 2%;
     align-items: center;
     width: 40%;
@@ -377,7 +390,9 @@ button{
 .all{
     width: 90%;
     margin-top: 6%;
+    border: solid 1px var(--main-orange);
     background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px;
     border-radius: 15px;
 }
 .passif h2, .skin_spells h2{
@@ -413,6 +428,7 @@ button{
     font-size: 0.8em;
 }
 .lore{
+    border: solid 1px var(--main-orange);
     width: 90%;
     margin: 2% 0 5% 0;
     background-color: rgba(0, 0, 0, 0.5);
