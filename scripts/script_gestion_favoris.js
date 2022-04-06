@@ -45,7 +45,11 @@ function init(){
             traitementResultat();
             verificationEntree();
         }else if(event.ctrlKey && (numTouche==220 || numTouche==170)){
-            ajouterFavoris();
+            var texte = $("#champ_texte").val().trim();
+            if(texte!=""){
+                ajouterFavoris();
+            }
+            
         }
       
 
